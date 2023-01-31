@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="container">
+  <h2 th:unless="${diagnoses} and ${diagnoses.size()}" class="text-center">There are no diagnoses!</h2>
+  <h2 th:if="${diagnoses.size()>0}" class="text-center py-4">All available diagnoses</h2>
+  <table th:if="${diagnoses.size()>0}" class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="diagnose : ${diagnoses}">
+      <td th:text="${diagnose.id}"></td>
+      <td th:text="${diagnose.name}"></td>
+      <td><a class="btn btn-info" th:href="@{'/diagnoses/edit-diagnose/'+${diagnose.id}}">Edit</a></td>
+      <td><a class="btn btn-danger" th:href="@{'/diagnoses/delete/'+${diagnose.id}}">Delete</a></td>
+    </tr>
+    <tr>
+    </tbody>
+  </table>
+</div>

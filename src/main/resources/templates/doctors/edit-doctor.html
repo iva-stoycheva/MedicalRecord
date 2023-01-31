@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="container">
+  <h2 class="text-center py-4">Edit doctor</h2>
+  <form class="text-center" method="post" th:action="@{/doctors/update/{id}(id=${id})}" th:object="${doctor}">
+    <div class="form-group">
+      <label for="uid">UID</label>
+      <input class="form-control" type="text" th:field="*{uid}" placeholder="UID" id="uid">
+      <span class="text-danger" th:if="${#fields.hasErrors('uid')}" th:errors="*{uid}">UID Error</span>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Enter new doctor name</label>
+      <input class="form-control" type="text" th:field="*{name}" placeholder="Name" id="name">
+      <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
+    </div>
+
+    <div>
+      <label>Specialty: </label>
+      <div th:each="specialty: ${specialties}">
+        <input type="radio" th:name="specialty" th:value="${specialty.id}" th:id="${specialty.id}"/>
+        <label th:for="${specialty.id}" th:text="${specialty.specialty}"></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button name="submit" type="submit" class="btn btn-primary w-25 p-2">Save doctor</button>
+    </div>
+  </form>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+
+<div class="container">
+  <h2 class="text-center py-4">Create patient</h2>
+
+  <form class="text-center" method="post" th:action="@{/patients/create}" th:object="${patient}">
+
+    <div class="form-group">
+      <label for="pin">PIN</label>
+      <input class="form-control" type="text" th:field="*{pin}" placeholder="PIN" id="pin">
+      <span class="text-danger" th:if="${#fields.hasErrors('pin')}" th:errors="*{pin}">PIN Error</span>
+    </div>
+
+    <div class="form-group">
+      <label for="text">Enter name</label>
+      <div class="input-group">
+        <input th:field="*{name}" id="text" name="text" placeholder="Name" type="text" required="required" class="form-control">
+        <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Is 6-months Insurance Paid:</label>
+      <input type="radio" name="is_insurance_paid" th:value="true" th:checked="${patient.is_insurance_paid} == true"/> Yes
+      <input type="radio" name="is_insurance_paid" th:value="false" th:checked="${patient.is_insurance_paid} == false"/> No
+    </div>
+
+    <div class="form-group">
+      <label>GP: </label>
+      <th:block th:each="doctor: ${doctors}">
+        <input type="radio" th:field="*{doctor}"
+               th:text="${doctor.name}" th:value="${doctor.id}" class="m-2" />
+      </th:block>
+    </div>
+
+    <div class="form-group">
+      <button name="submit" id type="submit" class="btn btn-primary w-25 p-2">Create</button>
+    </div>
+  </form>
+
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="container">
+  <h2 class="text-center py-4">Edit diagnose</h2>
+  <form class="text-center" method="post" th:action="@{/diagnoses/update/{id}(id=${id})}" th:object="${diagnose}">
+    <div class="form-group">
+      <label for="text">Enter new name</label>
+      <div class="input-group">
+        <input th:field="*{name}" id="text" name="text" placeholder="name" type="text" required="required" class="form-control">
+        <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Diagnose error</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button name="submit" type="submit" class="btn btn-primary w-25 p-2">Save diagnose</button>
+    </div>
+  </form>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

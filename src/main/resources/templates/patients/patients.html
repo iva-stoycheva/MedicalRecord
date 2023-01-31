@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="container">
+  <h2 th:unless="${patients} and ${patients.size()}" class="text-center">There are no patients!</h2>
+  <h2 th:if="${patients.size()>0}" class="text-center py-4">All available patients</h2>
+  <table th:if="${patients.size()>0}" class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>PIN</th>
+      <th>Name</th>
+      <th>Insurance</th>
+      <th>GP</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="patient : ${patients}">
+      <td th:text="${patient.id}"></td>
+      <td th:text="${patient.pin}"></td>
+      <td><a th:href="@{/appointments/{patientId}(patientId=${patient.id})}" th:text="${patient.name}"></a></td>
+      <td th:text="${patient.is_insurance_paid}"></td>
+      <td th:text="${patient.doctor != null ? patient.doctor.name : ''}"></td>
+      <td><a class="btn btn-info" th:href="@{'/patients/edit-patient/'+${patient.id}}">Edit</a></td>
+      <td><a class="btn btn-danger" th:href="@{'/patients/delete/'+${patient.id}}">Delete</a></td>
+    </tr>
+    <tr>
+    </tbody>
+  </table>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="container">
+  <h2 th:unless="${appointments} and ${appointments.size()}" class="text-center">There are no appointments!</h2>
+  <h2 th:if="${appointments.size()>0}" class="text-center py-4">All available appointments</h2>
+  <table th:if="${appointments.size()>0}" class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Date</th>
+      <th>Diagnose</th>
+      <th>Medicament</th>
+      <th>Start sick leave days</th>
+      <th>Sick days</th>
+      <th>Doctor</th>
+      <th>Patient</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="appointment : ${appointments}">
+      <td th:text="${appointment.id}"></td>
+      <td th:text="${appointment.date}"></td>
+      <td th:text="${appointment.diagnose.name}"></td>
+      <td th:text="${appointment.medicament}"></td>
+      <td th:text="${appointment.start_date}"></td>
+      <td th:text="${appointment.sick_leave_days}"></td>
+      <td th:text="${appointment.doctor.name}"></td>
+      <td th:text="${appointment.patient.name}"></td>
+      <td><a class="btn btn-info" th:href="@{'/appointments/edit-appointment/'+${appointment.id}}">Edit</a></td>
+      <td><a class="btn btn-danger" th:href="@{'/appointment/delete/'+${appointment.id}}">Delete</a></td>
+    </tr>
+    <tr>
+    </tbody>
+  </table>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+package com.java.medical_record_project.web.view.model;
+
+import com.java.medical_record_project.data.entity.Doctor;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.Set;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class SpecialtyViewModel {
+    public int id;
+
+    @NotBlank
+    @Size(min=1, max=20, message="Min 1, Max 20")
+    private String specialty;
+
+    private Set<Doctor> doctors;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <title>Medical Records Management</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script></head>
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand" href="/">Medical Records System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav" style="padding-left: 400px">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="specialtiesLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Specialties
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="specialtiesLink">
+                        <li><a class="dropdown-item"  href="/specialties">List of Specialties</a></li>
+                        <li><a class="dropdown-item" href="/specialties/create-specialty">Create Specialty</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="doctorsLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Doctors
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="doctorsLink">
+                        <li><a class="dropdown-item"  href="/doctors">List of Doctors</a></li>
+                        <li><a class="dropdown-item" href="/doctors/create-doctor">Create Doctor</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="patientsLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Patients
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="patientsLink">
+                        <li><a class="dropdown-item"  href="/patients">List of Patients</a></li>
+                        <li><a class="dropdown-item" href="/patients/create-patient">Create Patient</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="diagnosesLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Diagnoses
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="diagnosesLink">
+                        <li><a class="dropdown-item"  href="/diagnoses">List of Diagnoses</a></li>
+                        <li><a class="dropdown-item" href="/diagnoses/create-diagnose">Create Diagnose</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="appointmentsLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Appointments
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="appointmentsLink">
+                        <li><a class="dropdown-item" href="/appointments">List of Appointments</a></li>
+                        <li> <a class="dropdown-item"  href="/appointments/create-appointment">Create Appointment</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="queriesLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Queries
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="queriesLink">
+                        <li><a class="dropdown-item" href="/1/patients/count">NumberOfPatientsWithGP</a></li>
+                        <li><a class="dropdown-item" href="/1/appointments/count">NumberOfDoctorAppointments</a></li>
+                        <li><a class="dropdown-item" href="/count/1">NumberOfPatientsByDiagnose</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<footer page-footer font-small>
+    <div class="footer-copyright text-center py-3"> 2023 Copyright:
+        <a href="#"> Medical Records System</a>
+    </div>
+</footer>
+</html>

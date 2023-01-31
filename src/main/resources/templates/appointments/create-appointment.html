@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="container">
+  <h2 class="text-center py-4">Create appointment</h2>
+
+  <form class="text-center" method="post" th:action="@{/appointments/create}" th:object="${appointment}">
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input class="form-control" type="date" th:field="*{date}" placeholder="Date" id="date">
+      <span class="text-danger" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Date Error</span>
+    </div>
+
+    <div>
+      <label>Diagnose: </label>
+      <div th:each="diagnose: ${diagnoses}">
+        <input type="radio" th:field="*{diagnose}"
+               th:value="${diagnose.id}" th:id="${diagnose.id}" th:text="${diagnose.name}"/>
+        <label th:for="${diagnose.id}"></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="medicament">Medicament</label>
+      <input class="form-control" type="text" th:field="*{medicament}" placeholder="Medicament" id="medicament">
+      <span class="text-danger" th:if="${#fields.hasErrors('medicament')}" th:errors="*{medicament}">Medicament Error</span>
+    </div>
+
+    <div class="form-group">
+      <label for="start_date">Start sick leave days</label>
+      <input class="form-control" type="date" th:field="*{start_date}" placeholder="Date" id="start_date">
+      <span class="text-danger" th:if="${#fields.hasErrors('start_date')}" th:errors="*{start_date}">Date Error</span>
+    </div>
+
+    <div class="form-group">
+      <label for="sick_leave_days">Sick days</label>
+      <input class="form-control" type="text" th:field="*{sick_leave_days}" placeholder="Sick days" id="sick_leave_days">
+      <span class="text-danger" th:if="${#fields.hasErrors('sick_leave_days')}" th:errors="*{sick_leave_days}">Sick Leave Days Error</span>
+    </div>
+
+    <div>
+      <label>Doctor: </label>
+      <div th:each="doctor: ${doctors}">
+        <input type="radio" th:field="*{doctor}"
+               th:value="${doctor.id}" th:id="${doctor.id}" th:text="${doctor.name}"/>
+        <label th:for="${doctor.id}"></label>
+      </div>
+    </div>
+
+    <div>
+      <label>Patient: </label>
+      <div th:each="patient: ${patients}">
+        <input type="radio" th:field="*{patient}"
+               th:value="${patient.id}" th:id="${patient.id}" th:text="${patient.name}"/>
+        <label th:for="${patient.id}"></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button name="submit" type="submit" class="btn btn-primary w-25 p-2">Save appointment</button>
+    </div>
+  </form>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>
